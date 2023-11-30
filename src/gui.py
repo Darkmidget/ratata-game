@@ -19,44 +19,47 @@ class RatGameApp:
         self.options_label = tk.Label(master, text="")
         self.options_label.pack(padx=5)
 
+        self.rat = Rat()
         ### --- Dummy code --- ###
         dialogues = ["123", "Hello this is me"]
-        self.rat = Rat()
-        options = ["option1", "option2"]
-        self.update_display(dialogues, self.rat, options)
+        options = ["option1", "option2", "option3"]
+        functions = [lambda i: i for i in range(3)]
+        self.update_display(dialogues, options, functions)
         ### -------------------###
 
     def clear(self):
+        """Clear everything please!"""
         pass
 
-    def update_display(self, dialogues, options):
+    def update_display(self, dialogues, options, functions):
         self.clear()
+ 
+        # Update the labels and buttons
+        self.update_dialogue(dialogues)
+        self.update_stats()
+        self.update_option_buttons(options, functions)
 
+    def update_dialogue(self, dialogues):
         self.dialogue_text = ""
         for dialogue in dialogues:
             self.dialogue_text += dialogue
-
-        # Update the labels
-        self.update_dialogue()
-        self.update_stats()
-
-    def update_dialogue(self):
         self.dialogue_label.config(text=self.dialogue_text)
 
-    def update_stats(self, rat):
+    def update_stats(self):
         stats_text = "Rat Stats:\n"
-        for key, value in rat.__dict__.items():
+        for key, value in self.rat.__dict__.items():
             stats_text += f"{key}: {value}\n"
         self.stats_label.config(text=stats_text)
 
-    def create_option_buttons(self, options, functions):
+    def update_option_buttons(self, options, functions):
         self.option_buttons = []
         for index, option in enumerate(options):
-            button = tk.Button(self.master, text=option, command=self.handle_option(index+1, functions(index)))
+            function = functions[index]
+            button = tk.Button(self.master, text=option, command=self.handle_option(function))
             button.pack(pady=5)
             self.option_buttons.append(button)
 
-    def handle_option(self, option_number, function):
+    def handle_option(self, function):
         """When pressed, return 1,2,3 or 4"""
         self.rat = function(self.rat)
 
