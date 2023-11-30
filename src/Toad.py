@@ -28,13 +28,13 @@ def cheese_lottery(rat: Rat):
     rat = handle_item(rat, "cheese", random.randint(0, 4))
     return rat
 
-class Toad:
-    def shop(self, rat: Rat):
-        dialog = ["What would you like to buy?", ]
-        options = ["Health Pot : 15 Health : Priced at 2 Cheese",
-                  "Rat Slave : +1 Gang Member : Priced at 2 Cheese", 
-                  "Soap : -15 Filth : Priced at 2 Cheese", 
-                  "Cheese Lottery : Get 2 to 4 Cheese : Priced at 2 Cheese"]
-        options_functions = [health_potion, rat_slave, soap, cheese_lottery]
-        return (dialog, options, options_functions)
+
+def shop(rat: Rat):
+    dialog = ["Toad Merchant : Hello Traveller! What would you like to buy?", ]
+    options = ["Health Pot : 15 Health : Priced at 2 Cheese",
+                "Rat Slave : +1 Gang Member : Priced at 2 Cheese", 
+                "Soap : -15 Filth : Priced at 2 Cheese", 
+                "Cheese Lottery : Get 2 to 4 Cheese : Priced at 2 Cheese"]
+    options_functions = [health_potion, rat_slave, soap, cheese_lottery]
+    return (dialog, options, options_functions)
 

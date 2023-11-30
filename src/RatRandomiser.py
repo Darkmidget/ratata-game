@@ -1,6 +1,6 @@
 import random
 from Hobo import Hobo
-from Toad import Toad
+from Toad import shop
 from Ratata import Rat
 
 hobo = Hobo()
@@ -24,13 +24,12 @@ def event(rat):
 
 def other_event(rat):
     n = random.random()
-    toad = Toad
     # if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
     #     shop_chance = 0
     # else:
     #     shop_chance = 0.2
     if n <= 0.5:
-        return toad.shop(toad, rat)
+        return shop(rat)
     else:
         return hobo.hobo_encounter(rat)
     
@@ -60,8 +59,9 @@ def hunger_trigger(rat):
         return "\nYou don’t feel hungry."
     
 def filth_trigger(rat):
-    if rat.filth > 25:
-        rat.health  = rat.health - 1
+    if rat.filth <= 25:
+        return "\n“You are too clean for a rat, get filthy.”"
+    elif rat.filth > 25:
         return "\nYou are moderately nasty."
     elif rat.filth > 50:
         return "\nYou are excessively foul smelling.”"
@@ -69,7 +69,7 @@ def filth_trigger(rat):
         return "\nYou are the epitome of disgust, perfect."
 
 
-print(event(rat)[0])
+#print(event(rat)[0])
     
 # def action():
 #     response = input("Select an Action : (1)Wash (2)Eat (3)Find Food (4)Skip")

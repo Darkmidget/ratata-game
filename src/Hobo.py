@@ -5,7 +5,7 @@ import time
  
 class Hobo(): 
     def __init__(self): 
-        self.encounter = 1 
+        self.encounter = 0
         self.cheese = 1 
          
     def hobo_encounter(self,r): 
