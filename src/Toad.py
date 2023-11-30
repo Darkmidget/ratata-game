@@ -29,9 +29,6 @@ def cheese_lottery(rat: Rat):
     return rat
 
 class Toad:
-    def __init__ (self):
-        self.encounter = False
-    
     def shop(self, rat: Rat):
         dialog = ["What would you like to buy?", ]
         options = ["Health Pot : 15 Health : Priced at 3 Cheese",
@@ -42,11 +39,8 @@ class Toad:
         return (dialog, rat, options, options_functions)
     
 
-'''
 rat = Rat
 rat.__init__(rat)
 toad = Toad
-toad.__init__(toad)
-f = toad.shop(toad, rat)[3][0]
+f = Toad.shop(toad, rat)[3][0]
 print(f(rat).health)
-'''
