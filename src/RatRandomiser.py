@@ -22,10 +22,13 @@ def event(rat):
 
 def other_event(rat):
     n = random.random()
-
     toad = Toad
-    if n >= 0.0:
-        return toad.shop(toad,rat)
+    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
+        shop_chance = 0
+    else:
+        shop_chance = 0.2
+    if n <= 1.0:
+        return toad.shop(toad, rat)
     
 def filth_event(rat):
     cat_chance = 0.1
@@ -62,7 +65,7 @@ def filth_trigger(rat):
         return "\nYou are the epitome of disgust, perfect."
 
 
-#print(event(rat)[0])
+print(event(rat)[0])
     
 # def action():
 #     response = input("Select an Action : (1)Wash (2)Eat (3)Find Food (4)Skip")
@@ -72,7 +75,7 @@ def filth_trigger(rat):
 #         pass # eat function
 #     elif response == '3':
 #         food_event()
-#     elif response == '4':
+#     elif response == '4':g
 #         event()
 #     else:
 #         print("Invalid Input. Please try again")
