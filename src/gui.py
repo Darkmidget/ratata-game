@@ -44,7 +44,11 @@ class RatGameApp:
         """Main brain"""
         if not self.pause_brain:
             self.pause_brain = True
-            dialogues, options, functions = event(self.rat)
+            try:
+                dialogues, options, functions = event(self.rat)
+            except:
+                print(f"ERROR\n-------\n")
+                print(event(self.rat))
             self.update_display(dialogues, options, functions)
             # for key, value in vars(self.rat).items():
             #     print(f"{key}: {value}")

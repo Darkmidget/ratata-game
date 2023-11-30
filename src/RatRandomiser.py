@@ -29,7 +29,7 @@ def other_event(rat):
     #     shop_chance = 0
     # else:
     #     shop_chance = 0.2
-    if n <= 1:
+    if n <= 0:
         return toad.shop(toad, rat)
     else:
         return hobo.hobo_interact(rat)
