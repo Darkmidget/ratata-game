@@ -29,10 +29,10 @@ def other_event(rat):
     #     shop_chance = 0
     # else:
     #     shop_chance = 0.2
-    if n <= 0.5:
+    if n <= 1:
         return toad.shop(toad, rat)
     else:
-        return hobo.hobo_encounter(rat)
+        return hobo.hobo_interact(rat)
     
 def filth_event(rat):
     cat_chance = 0.1
