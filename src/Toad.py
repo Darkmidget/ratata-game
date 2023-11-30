@@ -43,4 +43,3 @@ rat = Rat
 rat.__init__(rat)
 toad = Toad
 f = Toad.shop(toad, rat)[2][0]
-print(f(rat).health)

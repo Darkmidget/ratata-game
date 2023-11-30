@@ -61,5 +61,3 @@ def other_event(rat):
     toad = Toad.Toad
     if n >= 0.0:
         return toad.shop(toad,rat)
-
-print(event(rat))
