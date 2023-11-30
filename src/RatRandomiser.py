@@ -43,7 +43,7 @@ def filth_event(rat):
 def food_event(rat):
     free_food_chance = 0.45
     steal_food_chance = 0.3
-    n = random.random(rat)
+    n = random.random()
     if n <= free_food_chance:
         pass #food event
     elif n <= free_food_chance + steal_food_chance:
@@ -53,7 +53,7 @@ def food_event(rat):
 
 def other_event(rat):
     n = random.random()
-    toad = Toad.Toad()
+    toad = Toad.Toad
     return toad.shop(rat)
 
 print(event(rat))
