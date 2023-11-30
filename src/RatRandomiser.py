@@ -1,10 +1,12 @@
 import random
+from Hobo import Hobo
 from Toad import Toad
 from Ratata import Rat
 
+hobo = Hobo()
 
-rat = Rat
-rat.__init__(rat)
+rat = Rat()
+
 
 def event(rat):
     filth_chance = 0 
@@ -23,12 +25,14 @@ def event(rat):
 def other_event(rat):
     n = random.random()
     toad = Toad
-    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
-        shop_chance = 0
-    else:
-        shop_chance = 0.2
-    if n <= 1.0:
+    # if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
+    #     shop_chance = 0
+    # else:
+    #     shop_chance = 0.2
+    if n <= 0.5:
         return toad.shop(toad, rat)
+    else:
+        return hobo.hobo_encounter(rat)
     
 def filth_event(rat):
     cat_chance = 0.1
