@@ -1,5 +1,8 @@
 import random
 
+def main():
+    pass
+
 def event():
     filth_chance = 0.05
     n = random.random()
@@ -49,4 +52,3 @@ def food_event():
 def other_event():
     
     n = random.random()
-        
