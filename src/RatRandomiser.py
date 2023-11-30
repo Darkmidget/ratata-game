@@ -1,10 +1,10 @@
 import random
 from Hobo import Hobo
-from Toad import shop
+from Toad import Toad
 from Ratata import Rat
 
 hobo = Hobo()
-
+Toad = Toad()
 rat = Rat()
 
 
@@ -29,7 +29,7 @@ def other_event(rat):
     # else:
     #     shop_chance = 0.2
     if n <= 0.5:
-        return shop(rat)
+        return Toad.shop(rat)
     else:
         return hobo.hobo_encounter(rat)
     
@@ -60,11 +60,11 @@ def hunger_trigger(rat):
     
 def filth_trigger(rat):
     if rat.filth <= 25:
-        return "\n“You are too clean for a rat, get filthy.”"
+        return "\nYou are too clean for a rat, get filthy."
     elif rat.filth > 25:
         return "\nYou are moderately nasty."
     elif rat.filth > 50:
-        return "\nYou are excessively foul smelling.”"
+        return "\nYou are excessively foul smelling."
     elif rat.filth > 75:
         return "\nYou are the epitome of disgust, perfect."
 
