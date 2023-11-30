@@ -15,6 +15,7 @@ class Hobo():
         self.encounter = 1
         self.cheese = 1 
          
+<<<<<<< HEAD
 
         #if self.cheese > 8 
          
@@ -24,12 +25,19 @@ class Hobo():
         # return dialog,player/rat, options 
         # maybe we should implement storyline where the rat interacts with the hobo idk  
         # make sure hobo hints that he can just come back next time to deliver many cheese 
+=======
+    
+>>>>>>> 37d0758cab4163e377138b929f8533d9e2e7df19
     def hobo_interact(self,r): 
         self.encounter += 1
         # Functions to do what you will do to the rat/hobo 
         def hobo_take(r): #take cheese from hobo 
+<<<<<<< HEAD
             print(r.belongings)
             handle_item(r, "cheese", 1)
+=======
+            handle_item(r,"cheese", 1) 
+>>>>>>> 37d0758cab4163e377138b929f8533d9e2e7df19
             self.cheese -= 1 
             print("Hobo:I will get going now. Have fun exploring and stay safe from those pesky cats.") 
             return r 
@@ -53,22 +61,36 @@ class Hobo():
             return r  
          
         def hobo_give(r): #rat give cheese 
+<<<<<<< HEAD
             if not "cheese" in r.belongings or r.belongings["cheese"] < 1:
                 print("As you have no cheese, Hobo expressed his dissapointment and left.") 
                 return r
+=======
+            if not "cheese" in r.belongings or r.belongings['cheese']<1:
+                print("As you have no cheese, Hobo expressed his dissapointment and left.")              
+>>>>>>> 37d0758cab4163e377138b929f8533d9e2e7df19
             elif r.belongings["cheese"]>=1: 
                 r.belongings["cheese"] -= 1 
                 self.cheese += 1 
                 if self.cheese >= 1: 
                     print("Hobo is delighted to received your gift and promises to return the favour in the future") 
                 elif self.cheese == 4: 
+<<<<<<< HEAD
                     print("Hobo is  thankful for your past gifts and handed you a strong Health Potion. Your hp increased and stuff") 
+=======
+                    print("Hobo is thankful for your past gifts and handed you a strong Health Potion. Your hp increased and stuff") 
+>>>>>>> 37d0758cab4163e377138b929f8533d9e2e7df19
                     r.health += 20 
                 elif self.cheese >4: 
                     print("Hobo  accepted your gift and left...") 
                 elif self.cheese == 6: 
                     print("Excited hobo gives u golden cheese lmao") 
                 return r 
+<<<<<<< HEAD
+=======
+            
+            return r
+>>>>>>> 37d0758cab4163e377138b929f8533d9e2e7df19
         def hobo_share(r): 
             # if r.rat_gang >= 1: 
             #     print("You shared your story on how you gather your gang rat members.") 
@@ -86,6 +108,7 @@ class Hobo():
             dialogue = [' The hobo is delighted to see you again. He is intrigued to learn of your journey thus far. '] 
             options = ["1. Give cheese", "2. Share more on your story", "3. Leave"] 
             return dialogue,options,[hobo_give,hobo_share,hobo_leave]  
+        return (["Problem Here"], ["THERE IS PROBLEM in JY CODE"], [lambda: 1])
         #elif self.encounter >= 5:  
            # dialogue = [ ''] 
      

@@ -67,6 +67,8 @@ def filth_trigger(rat):
         return "\nYou are excessively foul smelling."
     elif rat.filth > 75:
         return "\nYou are the epitome of disgust, perfect."
+    else:
+        return "\n You are too clean for a rat. Go get filthy!"
 
 
 #print(event(rat)[0])
