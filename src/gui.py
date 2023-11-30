@@ -42,15 +42,14 @@ class RatGameApp:
 
     def brain(self):
         """Main brain"""
-        dialogues, options, functions = event(self.rat)
-        self.update_display(dialogues, options, functions)
-        print("Test")
-        # for key, value in vars(self.rat).items():
-        #     print(f"{key}: {value}")
-        self.master.after(2000, self.brain)
-
-    def empty_func(self):
-        return self.rat
+        if not self.pause_brain:
+            self.pause_brain = True
+            dialogues, options, functions = event(self.rat)
+            self.update_display(dialogues, options, functions)
+            # for key, value in vars(self.rat).items():
+            #     print(f"{key}: {value}")
+            print(self.pause_brain)
+        self.master.after(100, self.brain)
 
     def clear(self):
         """Clear everything please!"""
@@ -84,6 +83,8 @@ class RatGameApp:
 
     def handle_option(self, function):
         """When pressed, return 1,2,3 or 4"""
+        print(f"function here\n----------\n{function}")
+        self.pause_brain = False # Allow a new event to run
         self.rat = function(self.rat)
 
 if __name__ == "__main__":
