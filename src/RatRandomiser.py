@@ -2,6 +2,7 @@ import random
 import Toad
 from Ratata import Rat
 
+
 rat = Rat
 rat.__init__(rat)
 '''
@@ -9,7 +10,7 @@ def choose_event():
     return (event(rat),event(rat),event(rat),event(rat))
 '''
 def event(rat):
-    filth_chance = 0 #0.05 + rat.filth/100
+    filth_chance = 0 
     n = random.random()
     if n <= filth_chance:
         return filth_event(rat)
@@ -56,9 +57,9 @@ def food_event(rat):
 
 def other_event(rat):
     n = random.random()
+
     toad = Toad.Toad
     if n >= 0.0:
         return toad.shop(toad,rat)
 
 print(event(rat))
-        
