@@ -36,11 +36,11 @@ class Toad:
                   "Soap : -15 Filth : Priced at 4 Cheese", 
                   "Cheese Lottery : Get 2 to 4 Cheese : Priced at 4 Cheese"]
         options_functions = [health_potion, rat_slave, soap, cheese_lottery]
-        return (dialog, rat, options, options_functions)
+        return (dialog, options, options_functions)
     
 
 rat = Rat
 rat.__init__(rat)
 toad = Toad
-f = Toad.shop(toad, rat)[3][0]
+f = Toad.shop(toad, rat)[2][0]
 print(f(rat).health)
