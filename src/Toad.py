@@ -31,10 +31,10 @@ def cheese_lottery(rat: Rat):
 class Toad:
     def shop(self, rat: Rat):
         dialog = ["What would you like to buy?", ]
-        options = ["Health Pot : 15 Health : Priced at 3 Cheese",
+        options = ["Health Pot : 15 Health : Priced at 2 Cheese",
                   "Rat Slave : +1 Gang Member : Priced at 2 Cheese", 
-                  "Soap : -15 Filth : Priced at 4 Cheese", 
-                  "Cheese Lottery : Get 2 to 4 Cheese : Priced at 4 Cheese"]
+                  "Soap : -15 Filth : Priced at 2 Cheese", 
+                  "Cheese Lottery : Get 2 to 4 Cheese : Priced at 2 Cheese"]
         options_functions = [health_potion, rat_slave, soap, cheese_lottery]
         return (dialog, options, options_functions)
 
