@@ -26,7 +26,7 @@ class RatGameApp:
         self.option_buttons = []
         # Creating buttons
         for _ in range(4):
-            button = tk.Button(self.master, text="")
+            button = tk.Button(self.master, text="", font=("Helvetica", 12))
             button.pack(pady=5)
             self.option_buttons.append(button)
 
@@ -72,13 +72,13 @@ class RatGameApp:
         self.dialogue_text = ""
         for dialogue in dialogues:
             self.dialogue_text += dialogue
-        self.dialogue_label.config(text=self.dialogue_text)
+        self.dialogue_label.config(text=self.dialogue_text, font=("Helvetica", 12))
 
     def update_stats(self):
         stats_text = "Rat Stats:\n"
-        # for key, value in self.rat.__dict__.items():
-        #     stats_text += f"{key}: {value}\n"
-        self.stats_label.config(text=stats_text)
+        for key, value in self.rat.__dict__.items():
+            stats_text += f"{key}: {value}\n"
+        self.stats_label.config(text=stats_text, font=("Helvetica", 12))
 
     def update_option_buttons(self, options, functions):    
         # Updating buttons
