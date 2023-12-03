@@ -32,7 +32,7 @@ def other_event(rat):
         shop_chance = 0
     else:
         shop_chance = 0.25
-    if shop_chance > 0 and rat.rat_gang.size() > 0:
+    if shop_chance > 0 and len(rat.rat_gang) > 0:
         flood_chance = 0.1
     else:
         flood_chance = 0.0
@@ -43,14 +43,16 @@ def other_event(rat):
         return other_events.theft(rat)
     elif n <= shop_chance + theft_chance + flood_chance:
         return other_events.flood(rat)
+    else:
+        return other_events.pond(rat)
     
 def filth_event(rat):
     cat_chance = 0.5
     n = random.random()
     if n <= cat_chance:
-        dialog,options,option_func = cat.encounter(rat)
+        return cat.encounter(rat)
     else:
-        dialog,options,option_func = hobo.hobo_interact(rat)
+        return hobo.hobo_interact(rat)
 
 def hunger_trigger(rat):
     if rat.hunger <= 0:
@@ -79,7 +81,7 @@ def filth_trigger(rat):
         return "\n You are too clean for a rat. Go get filthy!"
 
 
-#print(event(rat)[0])
+print(event(rat)[0])
     
 # def action():
 #     response = input("Select an Action : (1)Wash (2)Eat (3)Find Food (4)Skip")

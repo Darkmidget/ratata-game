@@ -29,6 +29,7 @@ def flood(rat):
     dialog = ["It is rainning and the sewers are flooded!", "\n What will you save?"]
     options = ["My Rats! : -2 Cheese", "My Cheese! : -1 Gang Member"]
     option_functions = [save_rats, save_cheese]
+    return dialog, options, option_functions
 
 def save_rats(rat):
     handle_item(rat, "cheese", -2)
@@ -36,4 +37,18 @@ def save_rats(rat):
 
 def save_cheese(rat):
     rat.rat_gang.pop()
+    return rat
+
+def pond(rat):
+    dialog = ["You feel like going for a bath, but which pond will you choose?"]
+    options = ["Dirty pond : +10 Filth", "Clean Pond : -10 Filth"]
+    option_functions = [dirty, clean]
+    return dialog, options, option_functions
+
+def dirty(rat):
+    rat.filth = rat.filth + 10
+    return rat
+
+def clean(rat):
+    rat.filth = rat.filth - 10
     return rat
