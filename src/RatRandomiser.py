@@ -2,14 +2,18 @@ import random
 from Hobo import Hobo
 from Toad import Toad
 from Ratata import Rat
+from cat import Cat
+import other_events
 
 hobo = Hobo()
-Toad = Toad()
+toad = Toad()
 rat = Rat()
+cat = Cat()
+
 
 
 def event(rat):
-    filth_chance = 0 
+    filth_chance = (filth - 20)/100
     n = random.random()
     dialog = []
     options = []
@@ -24,25 +28,29 @@ def event(rat):
 
 def other_event(rat):
     n = random.random()
-    # if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
-    #     shop_chance = 0
-    # else:
-    #     shop_chance = 0.2
-    if n <= 0.0:
-        return Toad.shop(rat)
+    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
+        shop_chance = 0
     else:
-        return hobo.hobo_interact(rat)
+        shop_chance = 0.25
+    if shop_chance > 0 and rat.rat_gang.size() > 0:
+        flood_chance = 0.1
+    else:
+        flood_chance = 0.0
+    theft_chance = 0.3
+    if n <= shop_chance:
+        return toad.shop(rat)
+    elif n <= shop_chance + theft_chance:
+        return other_events.theft(rat)
+    elif n <= shop_chance + theft_chance + flood_chance:
+        return other_events.flood(rat)
     
 def filth_event(rat):
-    cat_chance = 0.1
-    hobo_chance = 0.15
+    cat_chance = 0.5
     n = random.random()
     if n <= cat_chance:
-        pass #cat event
-    elif n <= cat_chance + hobo_chance:
-        pass #hobo event
+        dialog,options,option_func = cat.encounter(rat)
     else:
-        pass #rat event
+        dialog,options,option_func = hobo.hobo_interact(rat)
 
 def hunger_trigger(rat):
     if rat.hunger <= 0:
