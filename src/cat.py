@@ -139,4 +139,3 @@ jerry = Rat()
 tommy.encounter(jerry)
 tommy.fight_cat()
 print(jerry.health)
-

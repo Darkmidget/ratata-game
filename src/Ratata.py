@@ -5,11 +5,8 @@ class Rat:
         self.size = 1
         self.hunger = 70
         self.rat_gang = []
-        self.belongings = {}
+        self.belongings = {"cheese": 3}
 
     def display_stats(self):
         for key, value in self.__dict__.items():
             print(f"{key}: {value}")
-
-# rat = Rat()
-# rat.display_stats()
