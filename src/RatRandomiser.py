@@ -4,6 +4,7 @@ from Toad import Toad
 from Ratata import Rat
 from cat import Cat
 import other_events
+from rat import OtherRat
 
 hobo = Hobo()
 toad = Toad()
@@ -36,15 +37,19 @@ def other_event(rat):
         flood_chance = 0.1
     else:
         flood_chance = 0.0
-    theft_chance = 0.3
+    theft_chance = 0.15
+    pond_chance = 0.25
     if n <= shop_chance:
         return toad.shop(rat)
     elif n <= shop_chance + theft_chance:
         return other_events.theft(rat)
     elif n <= shop_chance + theft_chance + flood_chance:
         return other_events.flood(rat)
+    elif n <= shop_chance + theft_chance + flood_chance + pond_chance:
+         return other_events.pond(rat)
     else:
-        return other_events.pond(rat)
+        other_rat = OtherRat()
+        return other_rat.rat_encounter(rat)
     
 def filth_event(rat):
     cat_chance = 0.5
@@ -81,29 +86,4 @@ def filth_trigger(rat):
         return "\n You are too clean for a rat. Go get filthy!"
 
 
-print(event(rat)[0])
-    
-# def action():
-#     response = input("Select an Action : (1)Wash (2)Eat (3)Find Food (4)Skip")
-#     if response == '1':
-#         pass # reduce filth
-#     elif response == '2':
-#         pass # eat function
-#     elif response == '3':
-#         food_event()
-#     elif response == '4':g
-#         event()
-#     else:
-#         print("Invalid Input. Please try again")
-#         action()
- 
-# def food_event(rat):
-#     free_food_chance = 0.45
-#     steal_food_chance = 0.3
-#     n = random.random()
-#     if n <= free_food_chance:
-#         pass #food event
-#     elif n <= free_food_chance + steal_food_chance:
-#         pass #steal food
-#     else:
-#         pass #no food
+#print(event(rat)[0])
