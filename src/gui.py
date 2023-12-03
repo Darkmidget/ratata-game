@@ -3,7 +3,6 @@ import tkinter as tk
 from tkinter import messagebox
 from Ratata import Rat
 from RatRandomiser import event
-import copy
 
 ## Testing Corner
 class RatGameApp:
@@ -40,34 +39,45 @@ class RatGameApp:
         # self.brain()
         ### -------------------###
 
-    def brain(self):
+    def brain(self, delay = 0.1):
         """Main brain"""
         if not self.pause_brain:
             self.pause_brain = True
             try:
-                dialogues, options, functions = event(self.rat)
+                display_params = event(self.rat)
             except:
                 print(f"ERROR\n-------\n")
                 print(event(self.rat))
-            self.update_display(dialogues, options, functions)
+
+            self.update_display(*display_params)
             # for key, value in vars(self.rat).items():
             #     print(f"{key}: {value}")
-            print(self.pause_brain)
         self.master.after(100, self.brain)
 
-    def clear(self):
-        """Clear everything please!"""
+    def clear_display(self):
+        """Clears all display"""
         pass
 
-    def update_display(self, dialogues, options, functions):
-        self.clear()
- 
-        # Update the labels and buttons
-        self.update_dialogue(dialogues)
-        self.update_option_buttons(options, functions)
-        self.update_stats()
-        
+    def update_display(self, *args):
+        """*args = (dialogues, options, functions, more_dialogue). 
+        more_dialogue is for when the NPC will give more dialogue to your action."""
+        self.clear_display()
 
+        print(len(args))
+        dialogues = args[0]
+        options = args[1]
+        functions = args[2]
+
+        if len(args) == 4: 
+            more_dialogues = args[3]
+            self.update_dialogue(dialogues)
+            self.update_option_buttons(options, functions, more_dialogues) # Updates the dialogue when player chooses whatever option
+            self.update_stats()
+        elif len(args) == 3:
+            self.update_dialogue(dialogues)
+            self.update_option_buttons(options, functions)
+            self.update_stats()
+        
     def update_dialogue(self, dialogues):
         self.dialogue_text = ""
         for dialogue in dialogues:
@@ -80,14 +90,24 @@ class RatGameApp:
             stats_text += f"{key}: {value}\n"
         self.stats_label.config(text=stats_text, font=("Helvetica", 12))
 
-    def update_option_buttons(self, options, functions):    
+    def update_option_buttons(self, options, *args):
+        """Changes stats of rat and print out more dialogues if available"""
+        functions = args[0]
+        if len(args) == 2:
+            more_dialogues = args[1]
+            print(more_dialogues)
+
         # Updating buttons
         for index, option in enumerate(options):
-            self.option_buttons[index].config(text=option, command=lambda idx=index: self.handle_option(functions[idx]))
+            # Combines functions and update(more_dialogues[idx]) into one
+            combined_functions = lambda idx = index: [self.handle_option(functions[idx]), self.update_dialogue(more_dialogues[idx])]
+
+            self.option_buttons[index].config(text=option, command=combined_functions)
+            
 
     def handle_option(self, function):
         """When pressed, return 1,2,3 or 4"""
-        print(f"function here\n----------\n{function}")
+        # print(f"function here\n----------\n{function}")
         self.pause_brain = False # Allow a new event to run
         self.rat = function(self.rat)
 

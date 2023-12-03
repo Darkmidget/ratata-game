@@ -72,12 +72,13 @@ class Hobo():
        
         if self.encounter == 1: 
             dialogue = ["Hobo: Oh hello! This is the first time I have seen you around./n Do"] 
-            options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]  
+            options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]
             return dialogue,options, [hobo_take,hobo_eat,hobo_leave] 
         elif self.encounter > 1: 
             dialogue = [' The hobo is delighted to see you again. He is intrigued to learn of your journey thus far. '] 
             options = ["1. Give cheese", "2. Share more on your story", "3. Leave"] 
-            return dialogue,options,[hobo_give,hobo_share,hobo_leave]  
+            more_dialogues = ["Giving Cheese", "Sharing stories", "Adios"]
+            return dialogue,options,[hobo_give,hobo_share,hobo_leave], more_dialogues
         return (["Problem Here"], ["THERE IS PROBLEM in JY CODE"], [lambda: 1])
         #elif self.encounter >= 5:  
            # dialogue = [ ''] 
