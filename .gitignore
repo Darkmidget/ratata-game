@@ -3,6 +3,7 @@ test.py
 jingyu.py
 remove_text.py
 create_buttons.py
+guide.py
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

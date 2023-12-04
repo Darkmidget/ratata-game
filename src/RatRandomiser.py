@@ -15,12 +15,12 @@ def event(rat):
     options = []
     option_func = []
     if n <= filth_chance:
-        dialog,options,option_func = filth_event(rat)
+        dialog, *args = filth_event(rat)
     else:
-        dialog,options,option_func = other_event(rat)
+        dialog, *args = other_event(rat)
     dialog.append(hunger_trigger(rat))
     dialog.append(filth_trigger(rat))
-    return dialog, options, option_func
+    return dialog, *args
 
 def other_event(rat):
     n = random.random()
@@ -29,7 +29,7 @@ def other_event(rat):
     #     shop_chance = 0
     # else:
     #     shop_chance = 0.2
-    if n <= 1:
+    if n <= 0:
         return toad.shop(toad, rat)
     else:
         return hobo.hobo_interact(rat)
