@@ -26,12 +26,10 @@ def event(rat):
         re_values = other_event(rat)
     if len(re_values) == 4:
         dialog,options,option_func,second_dialog = re_values
-        dialog.append(hunger_trigger(rat))
         dialog.append(filth_trigger(rat))
         return dialog, options, option_func,second_dialog
     elif len(re_values) == 3:
         dialog,options,option_func = re_values
-        dialog.append(hunger_trigger(rat))
         dialog.append(filth_trigger(rat))
         return dialog, options, option_func
     else:
@@ -65,18 +63,6 @@ def filth_event(rat):
         return cat.encounter(rat)
     else:
         return hobo.hobo_interact(rat)
-
-def hunger_trigger(rat):
-    if rat.hunger <= 0:
-        return "\nYou are malnourished, your consciousness is slowly fading. Life will drop by 1 every 10 seconds."
-    elif rat.hunger < 25:
-        return "\nYou are desperate for food, you feel weak. Life will drop by 1 every minute."
-    elif rat.hunger < 50:
-        return "\nYour stomach is grumbling, you need to find food."
-    elif rat.hunger < 75:
-        return "\nYou are feeling peckish."
-    else:
-        return "\nYou don’t feel hungry."
     
 def filth_trigger(rat):
     if rat.filth <= 25:
