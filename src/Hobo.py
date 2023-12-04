@@ -12,7 +12,7 @@ class Hobo():
         self.encounter = 0
         self.cheese = 1 
     
-    def hobo_interact(self,r): 
+    def hobo_interact(self,r):  
         self.encounter += 1
         # Functions to do what you will do to the rat/hobo 
         def hobo_take(r): #take cheese from hobo 
@@ -47,19 +47,20 @@ class Hobo():
             return r 
        
         def first_enounter():
-            dialogue = ["Hobo: Oh hello little friend! This is the first time I have seen you around, do you want a cheese?"] 
+            dialogue = ["You stand at the foot of the wandering Hobo! He finds you cute and offers you a slice of yummy cheese!"] 
             options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]
             functions = [hobo_take,hobo_eat,hobo_leave]
             more_dialogues = []
 
             # NPC reply to your options
             # Option 1
-            more_dialogues.append("Hobo: I will get going now. Have fun exploring and stay safe from those pesky cats.")
+
+            more_dialogues.append("Hobo wishes you luck and left to explore the sewers.")
             #Option 2
-            more_dialogues.append("You have eaten the cheese and thanked him bye bye")
+            more_dialogues.append("You have eaten the cheese and thanked him.")
             # Option 3
             if self.encounter == 1:
-                more_dialogues.append("You thanked the hobo for his kind gesture but declined his cheese. Hobo was dissapointed, waves goodbye and left to explore the sewers.")
+                more_dialogues.append("You declined his offer. Hobo was dissapointed and left to explore the sewers.")
             else:
                 more_dialogues.append("You waved goodbye with your little paws. Hobo looks forward to meeting you again.")
 
@@ -80,14 +81,14 @@ class Hobo():
                 if (self.cheese >= 1 and self.cheese < 4): 
                     more_dialogues.append("Hobo is delighted to received your gift and promises to return the favour in the future") 
                 elif self.cheese == 4: 
-                    more_dialogues.append("Hobo is thankful for your past gifts and handed you a strong Health Potion. Your hp increased and stuff") 
+                    more_dialogues.append("Hobo is thankful for your past gifts and handed you a strong Health Potion.") 
                     r.health += 20 
                 elif (self.cheese >4 and self.cheese < 6): 
                     more_dialogues.append("Hobo accepted your gift and left...") 
                 elif self.cheese >= 6: 
-                    more_dialogues.append("Excited hobo gives u golden cheese lmao")  
+                    more_dialogues.append("Hobo wants to express his gratitude and gave you his cherished golden cheese!")  
             # Option 2
-            more_dialogues.append("*Rat noises that the hobo doesn't understand*. Nonetheless, the hobo pets your head before leaving")
+            more_dialogues.append("*Rat noises that the hobo doesn't understand*. Nonetheless, the hobo pets your head before leaving.")
             # Option 3
             more_dialogues.append("You waved goodbye with your little paws. Hobo looks forward to meeting you again.") 
 
