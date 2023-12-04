@@ -14,18 +14,27 @@ cat = Cat()
 
 
 def event(rat):
-    filth_chance = (rat.filth - 20)/100
+    filth_chance = 1#(rat.filth - 20)/100
     n = random.random()
     dialog = []
     options = []
     option_func = []
     if n <= filth_chance:
-        dialog,options,option_func = filth_event(rat)
+        re_values = filth_event(rat)
     else:
-        dialog,options,option_func = other_event(rat)
-    dialog.append(hunger_trigger(rat))
-    dialog.append(filth_trigger(rat))
-    return dialog, options, option_func
+        re_values = other_event(rat)
+    if len(re_values) == 4:
+        dialog,options,option_func,second_dialog = re_values
+        dialog.append(hunger_trigger(rat))
+        dialog.append(filth_trigger(rat))
+        return dialog, options, option_func,second_dialog
+    elif len(re_values) == 3:
+        dialog,options,option_func = re_values
+        dialog.append(hunger_trigger(rat))
+        dialog.append(filth_trigger(rat))
+        return dialog, options, option_func
+    else:
+        print("Critical Error in Return Value")
 
 def other_event(rat):
     n = random.random()
