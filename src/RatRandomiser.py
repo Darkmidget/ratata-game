@@ -12,6 +12,7 @@ rat = Rat()
 cat = Cat()
 
 
+
 def event(rat):
     filth_chance = rat.filth/100
     n = random.random()
@@ -58,7 +59,7 @@ def other_event(rat):
         return other_rat.rat_encounter(rat)
     
 def filth_event(rat):
-    cat_chance = 0.5
+    cat_chance = 0
     n = random.random()
     if n <= cat_chance:
         return cat.encounter(rat)
