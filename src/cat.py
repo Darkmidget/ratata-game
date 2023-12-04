@@ -33,7 +33,7 @@ class Cat:
         return [self.dialog], options, ls_func
 #====================================================================================
     def run_from_cat(self, rat): 
-        success = random() < self.level/10
+        success = random() > self.level/10
         self.dialog = "You and the Cat make eye contact. You attempt to flee"
         if success:
             self.dialog = "You have gotten away successfully and found some cheese along the way"
@@ -42,9 +42,10 @@ class Cat:
             return self.player
         else: 
             self.rat_minus_hp()
+            self.rat_minus_hp()
             self.level+=1 if self.level<10 else 0
-            self.dialog = f"You have failed to run away from {self.name}, the cat. Prepare to battle."
-            self.fight_cat()
+            self.dialog = f"You have failed to run away from {self.name}, the cat. Prepare to battle. "
+            self.fight_cat(self.player)
 #====================================================================================
     def confront_cat(self, rat): 
         self.dialog = f"You attempt to befriend the enemy ... what an idiot! You are now forced to fight the cat"
