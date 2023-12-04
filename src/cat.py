@@ -37,7 +37,7 @@ class Cat:
         self.dialog = "You and the Cat make eye contact. You attempt to flee"
         if success:
             self.dialog = "You have gotten away successfully and found some cheese along the way"
-            self.player.belongings["cheese"] += random.randint(1,4)
+            self.player.belongings["cheese"] += randint(1,4)
             self.level+=1 if self.level<10 else 0
             return self.player
         else: 
@@ -117,7 +117,7 @@ class Cat:
         #timer_bar.pack(pady=20)
         canvas = Canvas(self.game_window, width=1000, height=600)
         canvas.pack(fill="both", expand=True)
-        _f_ = 20
+        _f_ = ("Helvetica", 14)
         btn1 = Button(self.game_window,text=numbers[0],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn1,1))
         place_button(canvas, btn1)
         btn2 = Button(self.game_window,text=numbers[1],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn2,2))

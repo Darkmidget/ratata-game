@@ -22,7 +22,7 @@ class RatGameApp:
         self.options_label.pack(padx=5)
 
         self.pause_brain = False
-        # self.last_time = time.time_ns()
+        messagebox.showinfo(title = "Hint", message="Be nice")
 
         self.option_buttons = []
         # Creating buttons
@@ -55,18 +55,32 @@ class RatGameApp:
                 print(event(self.rat))
 
         self.is_rat_alive()
+        self.is_win()
         self.master.after(100, self.brain)
 
     def is_rat_alive(self):
         if self.rat.health <= 0:
             self.death_message = messagebox.showwarning(title="Ratus died :(", message="Restarting game")
             self.master.destroy()
+    
+    def is_win(self):
+        cat_ascii = cat_ascii = """/\\_/\\ 
+(o.o)
+> ^ <"""
+
+        normal_message = "You found that what it takes to win is to be nice to others."
+
+        if self.rat.belongings.get("golden_cheese"):
+            self.win_message = messagebox
+            for _ in range(5):
+                messagebox.showerror(title = "YOU WON?", message = f"{cat_ascii}\n\n{normal_message}")
+            self.master.destroy()
 
     def clear_display(self):
         """Clears all display"""
         self.dialogue_label.config(text="")
-        for index in range(4):
-            self.option_buttons[index].config(text="")
+        for button in self.option_buttons:
+            button.config(text="", command = lambda: 1)
 
     def update_display(self, *args):
         """*args = (dialogues, options, functions, more_dialogue). 
@@ -115,7 +129,7 @@ class RatGameApp:
                 combined_functions = lambda idx = index: [self.handle_option(functions[idx]), self.update_dialogue(more_dialogues[idx])]
             else:
                 combined_functions = lambda idx = index: self.handle_option(functions[idx])
-            
+
             self.option_buttons[index].config(text=option, command=combined_functions)
             
 
@@ -124,6 +138,7 @@ class RatGameApp:
         # print(f"function here\n----------\n{function}")
         self.pause_brain = False # Allow a new event to run
         self.rat = function(self.rat)
+        self.clear_display()
 
 if __name__ == "__main__":
     root = tk.Tk()
