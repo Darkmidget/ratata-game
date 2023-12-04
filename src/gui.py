@@ -12,13 +12,13 @@ class RatGameApp:
         self.master.title("Ratata")
         self.master.geometry("1200x800")
 
-        self.dialogue_label = tk.Label(master, text="", wraplength=350)
+        self.dialogue_label = tk.Label(master, text="", wraplength=350, font=("Helvetica", 12))
         self.dialogue_label.pack(pady=10)
 
-        self.stats_label = tk.Label(master, text="")
+        self.stats_label = tk.Label(master, text="", font=("Helvetica", 12))
         self.stats_label.pack(pady=10)
 
-        self.options_label = tk.Label(master, text="")
+        self.options_label = tk.Label(master, text="", font=("Helvetica", 12))
         self.options_label.pack(padx=5)
 
         self.pause_brain = False
@@ -64,7 +64,9 @@ class RatGameApp:
 
     def clear_display(self):
         """Clears all display"""
-        pass
+        self.dialogue_label.config(text="")
+        for index in range(4):
+            self.option_buttons[index].config(text="")
 
     def update_display(self, *args):
         """*args = (dialogues, options, functions, more_dialogue). 
@@ -89,7 +91,7 @@ class RatGameApp:
         self.dialogue_text = ""
         for dialogue in dialogues:
             self.dialogue_text += dialogue
-        self.dialogue_label.config(text=self.dialogue_text, font=("Helvetica", 12))
+        self.dialogue_label.config(text=self.dialogue_text)
 
         # current_time = time.time_ns()
         # print(f"Previous dialogue lasts for: {(current_time - self.last_time)*10e-9}")
@@ -99,7 +101,7 @@ class RatGameApp:
         stats_text = "Rat Stats:\n"
         for key, value in self.rat.__dict__.items():
             stats_text += f"{key}: {value}\n"
-        self.stats_label.config(text=stats_text, font=("Helvetica", 12))
+        self.stats_label.config(text=stats_text)
 
     def update_option_buttons(self, options, *args):
         """Changes stats of rat and print out more dialogues if available"""
