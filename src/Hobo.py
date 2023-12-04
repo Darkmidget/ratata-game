@@ -62,7 +62,7 @@ class Hobo():
         def hobo_share(r): 
             return r 
        
-        def first_enounter(self):
+        def first_enounter():
             dialogue = ["Hobo: Oh hello! This is the first time I have seen you around."] 
             options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]
             functions = [hobo_take,hobo_eat,hobo_leave]
@@ -81,7 +81,7 @@ class Hobo():
 
             return dialogue, options, functions, more_dialogues
         
-        def further_encounter(self):
+        def further_encounter():
             dialogue = [' The hobo is delighted to see you again. He is intrigued to learn of your journey thus far. '] 
             options = ["1. Give cheese", "2. Share more on your story", "3. Leave"] 
             functions = [hobo_give,hobo_share,hobo_leave]
