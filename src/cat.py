@@ -72,7 +72,7 @@ class Cat:
         self.level += 1
         self.player.belongings["cheese"] += 5
         return self.player
-    def check_sequence(self,btn,n):
+    def check_sequence(self,btn,btn2,n):
         def minus_restart():
             self.rat_minus_hp()
             if self.player.health<=0:
@@ -81,6 +81,7 @@ class Cat:
             else:
                 for widget in self.game_window.winfo_children():widget.destroy() 
                 self.make_run_game()
+        btn2.configure(bg="red", fg="yellow")
         btn.destroy()
         end=time.time()
         if (end-self.start_timer)>(11-self.level):
@@ -118,25 +119,25 @@ class Cat:
         canvas = Canvas(self.game_window, width=1000, height=600)
         canvas.pack(fill="both", expand=True)
         _f_ = 20
-        btn1 = Button(self.game_window,text=numbers[0],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn1,1))
+        btn1 = Button(self.game_window,text=numbers[0],font=_f_,width=10,height=5,fg="yellow",bg="red",command=lambda:self.check_sequence(btn1,btn2,1))
         place_button(canvas, btn1)
-        btn2 = Button(self.game_window,text=numbers[1],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn2,2))
+        btn2 = Button(self.game_window,text=numbers[1],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn2,btn3,2))
         place_button(canvas, btn2)
-        btn3 = Button(self.game_window,text=numbers[2],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn3,3))
+        btn3 = Button(self.game_window,text=numbers[2],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn3,btn4,3))
         place_button(canvas, btn3)
-        btn4 = Button(self.game_window,text=numbers[3],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn4,4))
+        btn4 = Button(self.game_window,text=numbers[3],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn4,btn5,4))
         place_button(canvas, btn4)
-        btn5 = Button(self.game_window,text=numbers[4],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn5,5))
+        btn5 = Button(self.game_window,text=numbers[4],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn5,btn6,5))
         place_button(canvas, btn5)
-        btn6 = Button(self.game_window,text=numbers[5],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn6,6))
+        btn6 = Button(self.game_window,text=numbers[5],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn6,btn7,6))
         place_button(canvas, btn6)
-        btn7 = Button(self.game_window,text=numbers[6],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn7,7))
+        btn7 = Button(self.game_window,text=numbers[6],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn7,btn8,7))
         place_button(canvas, btn7)
-        btn8 = Button(self.game_window,text=numbers[7],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn8,8))
+        btn8 = Button(self.game_window,text=numbers[7],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn8,btn9,8))
         place_button(canvas, btn8)
-        btn9 = Button(self.game_window,text=numbers[8],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn9,9))
+        btn9 = Button(self.game_window,text=numbers[8],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn9,btn10,9))
         place_button(canvas, btn9)
-        btn10 = Button(self.game_window,text=numbers[9],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn10,10))
+        btn10 = Button(self.game_window,text=numbers[9],font=_f_,width=10,height=5,fg="white",bg="black",command=lambda:self.check_sequence(btn10,btn10,10))
         place_button(canvas, btn10)
         #timer()
 
