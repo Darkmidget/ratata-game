@@ -54,6 +54,7 @@ class Hobo():
 
             # NPC reply to your options
             # Option 1
+
             more_dialogues.append("Hobo wishes you luck and left to explore the sewers.")
             #Option 2
             more_dialogues.append("You have eaten the cheese and thanked him.")
