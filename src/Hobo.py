@@ -12,7 +12,7 @@ def handle_item(rat: Rat, item, num):
  
 class Hobo(): 
     def __init__(self): 
-        self.encounter = 1
+        self.encounter = 0
         self.cheese = 1 
          
     

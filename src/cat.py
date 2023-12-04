@@ -37,10 +37,12 @@ class Cat:
         self.dialog = "You and the Cat make eye contact. You attempt to flee"
         if success:
             self.dialog = "You have gotten away successfully and found some cheese along the way"
+            self.player.belongings["cheese"] += random.randint(1,4)
             self.level+=1 if self.level<10 else 0
             return self.player
         else: 
             self.rat_minus_hp()
+            self.level+=1 if self.level<10 else 0
             self.dialog = f"You have failed to run away from {self.name}, the cat. Prepare to battle."
             self.fight_cat()
 #====================================================================================
@@ -51,7 +53,7 @@ class Cat:
         self.game_window = Tk()
         self.game_window.geometry("1000x600")
         self.game_window.title("CAT HUNTING !!!")
-        self.dialog = "You have stumbled upon your mortal nemesis, Prepare to Fight. Click in accending Sequence"
+        self.dialog += "You have stumbled upon your mortal nemesis, Prepare to Fight. Click in accending Sequence"
         self.make_run_game()
         self.game_start()
         return self.player
@@ -67,6 +69,7 @@ class Cat:
     def game_end(self):
         self.game_window.destroy()
         self.level += 1
+        self.player.belongings["cheese"] += 5
         return self.player
     def check_sequence(self,btn,n):
         def minus_restart():
