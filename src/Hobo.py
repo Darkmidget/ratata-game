@@ -21,7 +21,7 @@ class Hobo():
             return r 
          
         def hobo_eat(r):#eat cheese from hobo 
-            r.hunger += 10
+            r.health += 10
             return r  
          
         def hobo_leave(r): #decline/leave 
@@ -47,7 +47,7 @@ class Hobo():
             return r 
        
         def first_enounter():
-            dialogue = ["Hobo: Oh hello! This is the first time I have seen you around."] 
+            dialogue = ["Hobo: Oh hello little friend! This is the first time I have seen you around, do you want a cheese?"] 
             options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]
             functions = [hobo_take,hobo_eat,hobo_leave]
             more_dialogues = []
