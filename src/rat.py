@@ -23,6 +23,7 @@ def befriend_rat(rat):
 
     dialogue = "You decided to help a fellow rat, give one cheese."
     rat.belongings["cheese"] -=1
+    rat.rat_gang.append("rat_friend")
     return rat
   
 #Action 3

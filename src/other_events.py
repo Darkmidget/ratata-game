@@ -3,8 +3,8 @@ import random
 
 def theft(rat):
     dialog = ["You are on the hunt for Cheese!", "\nBut who will you steal it from?"]
-    options = ["Trash : 1 Cheese : 100% Success Rate", "Other Rats : 2 Cheese : 40% Success Rate", "A House : 4 Cheese : 25% Success Rate", ""]
-    option_functions = [trash, steal_from_rats, steal_house, no]
+    options = ["Trash : 1 Cheese : 100% Success Rate", "Other Rats : 2 Cheese : 40% Success Rate", "A House : 4 Cheese : 25% Success Rate"]
+    option_functions = [trash, steal_from_rats, steal_house]
     return dialog, options, option_functions
 
 def trash(rat):
@@ -45,8 +45,8 @@ def stay(rat):
 
 def pond(rat):
     dialog = ["You feel like going for a bath, but which pond will you choose?"]
-    options = ["Dirty pond : +10 Filth", "Clean Pond : -10 Filth", "On Second Thought. No Bath", ""]
-    option_functions = [dirty, clean, no, no]
+    options = ["Dirty pond : +10 Filth", "Clean Pond : -10 Filth", "On Second Thought. No Bath"]
+    option_functions = [dirty, clean, no]
     return dialog, options, option_functions
 
 def dirty(rat):
