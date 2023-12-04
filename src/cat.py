@@ -84,7 +84,7 @@ class Cat:
         btn2.configure(bg="red", fg="yellow")
         btn.destroy()
         end=time.time()
-        if (end-self.start_timer)>(11-self.level):
+        if (end-self.start_timer)>(13-self.level):
             self.dialog = "Too Slow! "
             minus_restart()
         elif self.check>=10:
