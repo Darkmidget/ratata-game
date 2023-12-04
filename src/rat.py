@@ -8,7 +8,7 @@ import random
 def fight_rat(rat):
 
     dialogue = "You sense an enemy Rat. Prepare to fight."
-    win = True if random.random() <=0.6 else False
+    win = True if random.random() <=0.6 - max(0.6,len(rat.rat_gang)/10) else False
 
     if win:
         rat.belongings["cheese"] +=1
@@ -23,6 +23,7 @@ def befriend_rat(rat):
 
     dialogue = "You decided to help a fellow rat, give one cheese."
     rat.belongings["cheese"] -=1
+    rat.rat_gang.append("rat friend")
     return rat
   
 #Action 3
