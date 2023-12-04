@@ -4,7 +4,7 @@ from Toad import Toad
 from Ratata import Rat
 from cat import Cat
 import other_events
-from rat import OtherRat
+import rat as OthRat
 
 hobo = Hobo()
 toad = Toad()
@@ -29,16 +29,14 @@ def event(rat):
 
 def other_event(rat):
     n = random.random()
-    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
-        shop_chance = 0
-    else:
-        shop_chance = 0.25
-    if shop_chance > 0 and len(rat.rat_gang) > 0:
-        flood_chance = 0.1
-    else:
-        flood_chance = 0.0
-    theft_chance = 0.15
-    pond_chance = 0.25
+
+    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2: shop_chance = 0.0
+    else: shop_chance = 0.25    
+    if shop_chance > 0 and len(rat.rat_gang) > 0: flood_chance = 0.1
+    else: flood_chance = 0.0
+
+    theft_chance = 0.1
+    pond_chance = 0.2
     if n <= shop_chance:
         return toad.shop(rat)
     elif n <= shop_chance + theft_chance:
@@ -48,7 +46,7 @@ def other_event(rat):
     elif n <= shop_chance + theft_chance + flood_chance + pond_chance:
          return other_events.pond(rat)
     else:
-        other_rat = OtherRat()
+        other_rat = OthRat.OtherRat()
         return other_rat.rat_encounter(rat)
     
 def filth_event(rat):
@@ -86,4 +84,4 @@ def filth_trigger(rat):
         return "\n You are too clean for a rat. Go get filthy!"
 
 
-#print(event(rat)[0])
+print(event(rat)[0])

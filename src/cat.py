@@ -23,7 +23,7 @@ class Cat:
     def encounter(self,player):
         self.player = player
         self.dialog = [f"{self.cat_name} found you!!! Choose to Run, Fight or Comfront"]
-        options = ["Run!", "Fight!",f"Confront{self.name}!"]
+        options = ["Run!", "Fight!",f"Confront{self.cat_name}!"]
         ls_func = [self.run_from_cat,self.run_from_cat,self.confront_cat]
         return self.dialog, options, ls_func
 
