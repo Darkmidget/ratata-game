@@ -9,7 +9,7 @@ def handle_item(rat: Rat, item, num):
     return rat
 
 def health_potion(rat: Rat):
-    rat = handle_item(rat, "cheese", -2)
+    rat = handle_item(rat, "cheese", -3)
     rat.health = rat.health + 15
     return rat
     
@@ -19,7 +19,7 @@ def rat_slave(rat: Rat):
     return rat
     
 def soap(rat: Rat):
-    rat = handle_item(rat, "cheese", -2)
+    rat = handle_item(rat, "cheese", -4)
     rat.filth = rat.filth - 15
     return rat
     

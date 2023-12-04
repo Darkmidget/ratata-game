@@ -11,3 +11,4 @@ Simple Toad Dialog for accessing shop
 Added Funtions : Health Potion, Rat Slave, Soap Cheese Lottery
 Modified Randomiser with toad function as test
 Added Hunger and flith text Trigger
+Add two new events, theft and flood
