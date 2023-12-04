@@ -107,10 +107,6 @@ class RatGameApp:
             self.dialogue_text += dialogue
         self.dialogue_label.config(text=self.dialogue_text)
 
-        # current_time = time.time_ns()
-        # print(f"Previous dialogue lasts for: {(current_time - self.last_time)*10e-9}")
-        # self.last_time = current_time
-
     def update_stats(self):
         stats_text = "Rat Stats:\n"
         for key, value in self.rat.__dict__.items():
