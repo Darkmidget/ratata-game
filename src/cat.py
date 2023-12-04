@@ -37,7 +37,7 @@ class Cat:
         self.dialog = "You and the Cat make eye contact. You attempt to flee"
         if success:
             self.dialog = "You have gotten away successfully and found some cheese along the way"
-            self.player.belongings["cheese"] += random.randint(1,4)
+            self.player.belongings["cheese"] += randint(1,4)
             self.level+=1 if self.level<10 else 0
             return self.player
         else: 

@@ -8,13 +8,14 @@ import random
 def fight_rat(rat):
 
     dialogue = "You sense an enemy Rat. Prepare to fight."
-    win = True if random.random() <=0.6 - max(0.6,len(rat.rat_gang/10)) else False
+    win = True if random.random() <=0.3 + len(rat.rat_gang)/20 else False
 
     if win:
-        rat.belongings["cheese"] +=1
+        rat.belongings["cheese"] += 1
         return rat
     else:
         rat.belongings["cheese"] -=1
+        rat.rat_gang.clear()
         rat.health -=10
         return rat
     

@@ -13,7 +13,7 @@ cat = Cat()
 
 
 def event(rat):
-    filth_chance = (rat.filth - 20)/100
+    filth_chance = rat.filth/100
     n = random.random()
     dialog = []
     options = []
