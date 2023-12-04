@@ -21,6 +21,7 @@ class RatGameApp:
         self.options_label.pack(padx=5)
 
         self.pause_brain = False
+        # self.last_time = time.time_ns()
 
         self.option_buttons = []
         # Creating buttons
@@ -45,11 +46,13 @@ class RatGameApp:
             self.pause_brain = True
             try:
                 display_params = event(self.rat)
+                self.update_display(*display_params)
+                time.sleep(1) # Slows down the speed at which new dialogues are shown
             except:
                 print(f"ERROR\n-------\n")
                 print(event(self.rat))
 
-            self.update_display(*display_params)
+            
             # for key, value in vars(self.rat).items():
             #     print(f"{key}: {value}")
         self.master.after(100, self.brain)
@@ -63,7 +66,6 @@ class RatGameApp:
         more_dialogue is for when the NPC will give more dialogue to your action."""
         self.clear_display()
 
-        print(len(args))
         dialogues = args[0]
         options = args[1]
         functions = args[2]
@@ -84,6 +86,10 @@ class RatGameApp:
             self.dialogue_text += dialogue
         self.dialogue_label.config(text=self.dialogue_text, font=("Helvetica", 12))
 
+        # current_time = time.time_ns()
+        # print(f"Previous dialogue lasts for: {(current_time - self.last_time)*10e-9}")
+        # self.last_time = current_time
+
     def update_stats(self):
         stats_text = "Rat Stats:\n"
         for key, value in self.rat.__dict__.items():
@@ -93,15 +99,16 @@ class RatGameApp:
     def update_option_buttons(self, options, *args):
         """Changes stats of rat and print out more dialogues if available"""
         functions = args[0]
-        if len(args) == 2:
-            more_dialogues = args[1]
-            print(more_dialogues)
-
+        
         # Updating buttons
         for index, option in enumerate(options):
-            # Combines functions and update(more_dialogues[idx]) into one
-            combined_functions = lambda idx = index: [self.handle_option(functions[idx]), self.update_dialogue(more_dialogues[idx])]
-
+            # Combines functions and update(more_dialogues[idx]) into one lambda function
+            if len(args) == 2:
+                more_dialogues = args[1]
+                combined_functions = lambda idx = index: [self.handle_option(functions[idx]), self.update_dialogue(more_dialogues[idx])]
+            else:
+                combined_functions = lambda idx = index: self.handle_option(functions[idx])
+            
             self.option_buttons[index].config(text=option, command=combined_functions)
             
 
