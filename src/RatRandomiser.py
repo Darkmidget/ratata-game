@@ -14,7 +14,7 @@ cat = Cat()
 
 
 def event(rat):
-    filth_chance = 1#(rat.filth - 20)/100
+    filth_chance = 0#(rat.filth - 20)/100
     n = random.random()
     dialog = []
     options = []
@@ -59,7 +59,7 @@ def other_event(rat):
         return other_rat.rat_encounter(rat)
     
 def filth_event(rat):
-    cat_chance = 0.5
+    cat_chance = 0
     n = random.random()
     if n <= cat_chance:
         return cat.encounter(rat)
@@ -68,10 +68,8 @@ def filth_event(rat):
 
 def hunger_trigger(rat):
     if rat.hunger <= 0:
-        rat.health  = rat.health - 15
         return "\nYou are malnourished, your consciousness is slowly fading. Life will drop by 1 every 10 seconds."
     elif rat.hunger < 25:
-        rat.health  = rat.health - 1
         return "\nYou are desperate for food, you feel weak. Life will drop by 1 every minute."
     elif rat.hunger < 50:
         return "\nYour stomach is grumbling, you need to find food."
@@ -93,4 +91,4 @@ def filth_trigger(rat):
         return "\n You are too clean for a rat. Go get filthy!"
 
 
-print(event(rat)[0])
+#print(event(rat)[0])
