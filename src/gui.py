@@ -40,8 +40,9 @@ class RatGameApp:
         # self.brain()
         ### -------------------###
 
-    def brain(self, delay = 0.1):
-        """Main brain"""
+    def brain(self):
+        """Inserts the parameters returned from event(self.rat) into self.update_diaply().
+        Loops by creating a separate thread of itself that is called 0.1s later."""
         if not self.pause_brain:
             self.pause_brain = True
             try:
