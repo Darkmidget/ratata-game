@@ -3,6 +3,7 @@ import tkinter as tk
 from tkinter import messagebox
 from Ratata import Rat
 from RatRandomiser import event
+import sys
 
 ## Testing Corner
 class RatGameApp:
@@ -53,10 +54,13 @@ class RatGameApp:
                 print(f"ERROR\n-------\n")
                 print(event(self.rat))
 
-            
-            # for key, value in vars(self.rat).items():
-            #     print(f"{key}: {value}")
+        self.is_rat_alive()
         self.master.after(100, self.brain)
+
+    def is_rat_alive(self):
+        if self.rat.health <= 0:
+            self.death_message = messagebox.showwarning(title="Ratus died :(", message="Restarting game")
+            self.master.destroy()
 
     def clear_display(self):
         """Clears all display"""

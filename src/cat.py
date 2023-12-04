@@ -134,8 +134,9 @@ class Cat:
         place_button(canvas, btn10)
         #timer()
 
-tommy = Cat()
-jerry = Rat()
-tommy.encounter(jerry)
-tommy.fight_cat()
-print(jerry.health)
+if __name__ == "__main__":
+    tommy = Cat()
+    jerry = Rat()
+    tommy.encounter(jerry)
+    tommy.fight_cat()
+    print(jerry.health)
