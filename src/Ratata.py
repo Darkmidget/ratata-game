@@ -9,4 +9,4 @@ class Rat:
 
     def display_stats(self):
         for key, value in self.__dict__.items():
-            print(f"{key}: {value}")
+            print(f"{key}: {value}")    
