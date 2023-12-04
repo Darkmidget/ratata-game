@@ -10,6 +10,7 @@ hobo = Hobo()
 toad = Toad()
 rat = Rat()
 cat = Cat()
+other_rat = OthRat.OtherRat()
 
 
 
@@ -55,7 +56,6 @@ def other_event(rat):
     elif n <= shop_chance + theft_chance + flood_chance + pond_chance:
          return other_events.pond(rat)
     else:
-        other_rat = OthRat.OtherRat()
         return other_rat.rat_encounter(rat)
     
 def filth_event(rat):

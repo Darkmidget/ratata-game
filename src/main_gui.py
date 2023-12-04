@@ -49,7 +49,7 @@ class RatGameApp:
             try:
                 display_params = event(self.rat)
                 self.update_display(*display_params)
-                time.sleep(1) # Slows down the speed at which new dialogues are shown
+                time.sleep(2) # Slows down the speed at which new dialogues are shown
             except:
                 print(f"ERROR\n-------\n")
                 print(event(self.rat))

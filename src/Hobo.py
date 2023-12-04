@@ -76,7 +76,6 @@ class Hobo():
             if not "cheese" in r.belongings or r.belongings['cheese']<1:
                 more_dialogues.append("As you have no cheese, Hobo expressed his dissapointment and left.")
             elif r.belongings["cheese"]>=1: 
-                r.belongings["cheese"] -= 1 
                 self.cheese += 1 
                 if (self.cheese >= 1 and self.cheese < 4): 
                     more_dialogues.append("Hobo is delighted to received your gift and promises to return the favour in the future") 
