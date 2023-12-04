@@ -2,98 +2,79 @@ import random
 from Hobo import Hobo
 from Toad import Toad
 from Ratata import Rat
+from cat import Cat
+import other_events
+import rat as OthRat
 
 hobo = Hobo()
-
+toad = Toad()
 rat = Rat()
+cat = Cat()
+other_rat = OthRat.OtherRat()
+
 
 
 def event(rat):
-    filth_chance = 0 
+    filth_chance = rat.filth/100
     n = random.random()
     dialog = []
     options = []
     option_func = []
     if n <= filth_chance:
-        dialog,options,option_func = filth_event(rat)
+        re_values = filth_event(rat)
     else:
-        dialog,options,option_func = other_event(rat)
-    dialog.append(hunger_trigger(rat))
-    dialog.append(filth_trigger(rat))
-    return dialog, options, option_func
+        re_values = other_event(rat)
+    if len(re_values) == 4:
+        dialog,options,option_func,second_dialog = re_values
+        dialog.append(filth_trigger(rat))
+        return dialog, options, option_func,second_dialog
+    elif len(re_values) == 3:
+        dialog,options,option_func = re_values
+        dialog.append(filth_trigger(rat))
+        return dialog, options, option_func
+    else:
+        print("Critical Error in Return Value")
 
 def other_event(rat):
     n = random.random()
-    toad = Toad
-    # if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2:
-    #     shop_chance = 0
-    # else:
-    #     shop_chance = 0.2
-    if n <= 1:
-        return toad.shop(toad, rat)
+
+    if not "cheese" in rat.belongings or rat.belongings["cheese"] < 2: shop_chance = 0.0
+    else: shop_chance = 0.25    
+    if shop_chance > 0 and len(rat.rat_gang) > 0: flood_chance = 0.1
+    else: flood_chance = 0.0
+
+    theft_chance = 0.1
+    pond_chance = 0.2
+    if n <= shop_chance:
+        return toad.shop(rat)
+    elif n <= shop_chance + theft_chance:
+        return other_events.theft(rat)
+    elif n <= shop_chance + theft_chance + flood_chance:
+        return other_events.flood(rat)
+    elif n <= shop_chance + theft_chance + flood_chance + pond_chance:
+         return other_events.pond(rat)
+    else:
+        return other_rat.rat_encounter(rat)
+    
+def filth_event(rat):
+    cat_chance = 0.5
+    n = random.random()
+    if n <= cat_chance:
+        return cat.encounter(rat)
     else:
         return hobo.hobo_interact(rat)
     
-def filth_event(rat):
-    cat_chance = 0.1
-    hobo_chance = 0.15
-    n = random.random()
-    if n <= cat_chance:
-        pass #cat event
-    elif n <= cat_chance + hobo_chance:
-        pass #hobo event
-    else:
-        pass #rat event
-
-def hunger_trigger(rat):
-    if rat.hunger <= 0:
-        rat.health  = rat.health - 15
-        return "\nYou are malnourished, your consciousness is slowly fading. Life will drop by 1 every 10 seconds."
-    elif rat.hunger < 25:
-        rat.health  = rat.health - 1
-        return "\nYou are desperate for food, you feel weak. Life will drop by 1 every minute."
-    elif rat.hunger < 50:
-        return "\nYour stomach is grumbling, you need to find food."
-    elif rat.hunger < 75:
-        return "\nYou are feeling peckish."
-    else:
-        return "\nYou don’t feel hungry."
-    
 def filth_trigger(rat):
-    if rat.filth > 25:
-        rat.health  = rat.health - 1
+    if rat.filth <= 25:
+        return "\nYou are too clean for a rat, get filthy."
+    elif rat.filth > 25:
         return "\nYou are moderately nasty."
     elif rat.filth > 50:
-        return "\nYou are excessively foul smelling.”"
+        return "\nYou are excessively foul smelling."
     elif rat.filth > 75:
         return "\nYou are the epitome of disgust, perfect."
     else:
         return "\n You are too clean for a rat. Go get filthy!"
 
 
-print(event(rat)[0])
-    
-# def action():
-#     response = input("Select an Action : (1)Wash (2)Eat (3)Find Food (4)Skip")
-#     if response == '1':
-#         pass # reduce filth
-#     elif response == '2':
-#         pass # eat function
-#     elif response == '3':
-#         food_event()
-#     elif response == '4':g
-#         event()
-#     else:
-#         print("Invalid Input. Please try again")
-#         action()
- 
-# def food_event(rat):
-#     free_food_chance = 0.45
-#     steal_food_chance = 0.3
-#     n = random.random()
-#     if n <= free_food_chance:
-#         pass #food event
-#     elif n <= free_food_chance + steal_food_chance:
-#         pass #steal food
-#     else:
-#         pass #no food
+#print(event(rat)[0])
