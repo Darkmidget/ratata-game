@@ -1,7 +1,4 @@
-from dialogue import interact_handler 
 from Ratata import Rat 
-from time import sleep 
-import time 
 
 def handle_item(rat: Rat, item, num):
     if not item in rat.belongings:
@@ -21,42 +18,25 @@ class Hobo():
         def hobo_take(r): #take cheese from hobo 
             handle_item(r,"cheese", 1) 
             self.cheese -= 1 
-            # print("Hobo: I will get going now. Have fun exploring and stay safe from those pesky cats.") 
             return r 
          
-        def hobo_eat(r):#eat cheese from hobo 
-            # print("You have eaten the cheese and thank him byebye")
-            r.hunger += 10
-            return r  
-         
         def hobo_leave(r): #decline/leave 
-            if self.encounter == 1:  
-                # print("You thanked the hobo for his kind gesture but declined his cheese.") 
-                # print("Hobo was dissapointed, waves goodbye and left to explore the sewers.") 
-                return r 
-            if self.encounter != 1: 
-                # print("You waved goodbye with your little paws.") 
-                # print("Hobo looks forward to meeting you again.") 
-                return r 
             return r  
          
         def hobo_give(r): #rat give cheese 
             if not "cheese" in r.belongings or r.belongings['cheese']<1:
-                # print("As you have no cheese, Hobo expressed his dissapointment and left.")
                 pass              
             elif r.belongings["cheese"]>=1: 
                 r.belongings["cheese"] -= 1 
                 self.cheese += 1 
-                if self.cheese >= 1: 
-                    print("Hobo is delighted to received your gift and promises to return the favour in the future") 
+                if (self.cheese >= 1 and self.cheese < 4): 
+                    pass
                 elif self.cheese == 4: 
-                    print("Hobo is thankful for your past gifts and handed you a strong Health Potion. Your hp increased and stuff") 
                     r.health += 20 
-                elif self.cheese >4: 
-                    print("Hobo accepted your gift and left...") 
-                elif self.cheese == 6: 
-                    handle_item(r, "golden_cheese", 1)
-                    print("Excited hobo gives u golden cheese lmao")            
+                elif (self.cheese >4 and self.cheese < 6): 
+                    pass
+                elif self.cheese >= 6: 
+                    r = handle_item(r, "golden_cheese", 1)     
             return r
         
         def hobo_share(r): 
@@ -64,8 +44,8 @@ class Hobo():
        
         def first_enounter():
             dialogue = ["Hobo: Oh hello! This is the first time I have seen you around."] 
-            options = ["1. Take cheese ", "2. Eat cheese", "3. Decline"]
-            functions = [hobo_take,hobo_eat,hobo_leave]
+            options = ["1. Take cheese ", "2. Decline"]
+            functions = [hobo_take,hobo_leave]
             more_dialogues = []
 
             # NPC reply to your options
@@ -94,15 +74,15 @@ class Hobo():
             elif r.belongings["cheese"]>=1: 
                 r.belongings["cheese"] -= 1 
                 self.cheese += 1 
-                if self.cheese >= 1: 
+                if (self.cheese >= 1 and self.cheese < 4): 
                     more_dialogues.append("Hobo is delighted to received your gift and promises to return the favour in the future") 
                 elif self.cheese == 4: 
                     more_dialogues.append("Hobo is thankful for your past gifts and handed you a strong Health Potion. Your hp increased and stuff") 
                     r.health += 20 
-                elif self.cheese >4: 
+                elif (self.cheese >4 and self.cheese < 6): 
                     more_dialogues.append("Hobo accepted your gift and left...") 
-                elif self.cheese == 6: 
-                    more_dialogues("Excited hobo gives u golden cheese lmao")  
+                elif self.cheese >= 6: 
+                    more_dialogues.append("Excited hobo gives u golden cheese lmao")  
             # Option 2
             more_dialogues.append("*Rat noises that the hobo doesn't understand*. Nonetheless, the hobo pets your head before leaving")
             # Option 3
@@ -116,7 +96,3 @@ class Hobo():
             return further_encounter()
         
         return (["Problem Here"], ["THERE IS PROBLEM in JY CODE"], [lambda: 1])
-     
-# def eatcheese(r): 
-#     r.hunger += 10 
-#     return(r)
